@@ -84,6 +84,27 @@ def vacuum_theory():
     ans = VT.eqn_1_3(m=2, k=1)  # 13
     assert 1.333333333333332 == (ans), ans
 
+def einstein_static():
+    class Einstein:
+        @kwasak
+        def einstein(s, e: float = None, m: float = None, **kwargs):
+            return  # decorator skips return
+
+        @staticmethod
+        def einstein__m(e: float):
+            return e / 8.98755179e16
+
+        @staticmethod
+        def einstein__e(m: float) -> float:
+            return m * 8.98755179e16
+
+    e = Einstein()
+    ans = e.einstein(e=1000)  # returns m, (1000 / 8.98755179 e16), ~1.11265 e -14
+    assert 1.1126500557278013e-14 == (ans)
+    ans = e.einstein(m=1000)  # returns e, 1000 * 8.98755179 e16, ~8.98755179 e19
+    assert 8.98755179e19 == (ans)
+    ans = e.einstein(e=ans)  # returns e, 1000 * 8.98755179 e16, ~8.98755179 e19
+    assert 1000.0 == (ans)
 
 if __name__ == "__main__":
     einstein()
@@ -92,4 +113,6 @@ if __name__ == "__main__":
     print("Pythagoras, ✅")
     vacuum_theory()
     print("Vacuum Theory, ✅")
+    einstein()
+    print("Einstein (Static), ✅")
     print("Done! ✅")

@@ -58,7 +58,7 @@ import inspect
 def kwasak(func):
     """
     Intention:
-    base method is `vanilla`... that means no `__syntax`
+    base method is `vanilla`... that means no `__suffix`
 
     and can calculate necessary formula to solve for a single variable
 
@@ -79,3 +79,29 @@ def kwasak(func):
         return getattr(self, correct_method)(*correct_args)
 
     return wrapper
+
+def kwasak_static(func):
+    """
+    Intention:
+    base method is `vanilla`... that means no `__suffix`
+
+    and can calculate necessary formula to solve for a single variable
+
+    Assumption: method is not static. why? we abuse inspect to inspect the
+    [1:-1] kwargs in order to resolve the missing parameter
+    """
+
+    def wrapper(self, **kwargs):
+        method_name = func.__name__
+        all_parameters = list(inspect.signature(func).parameters)[0:-1]
+        missing_arg = [kw for kw in all_parameters if kw not in kwargs]
+        if not len(missing_arg) == 1:
+            raise ValueError(
+                "Must have exactly one missing variable for which to solve."
+            )
+        correct_method = method_name + "__" + missing_arg[0]
+        correct_args = [x[1] for x in sorted(kwargs.items(), key=lambda kv: kv[0])]
+        return getattr(self, correct_method)(*correct_args)
+
+    return wrapper
+
