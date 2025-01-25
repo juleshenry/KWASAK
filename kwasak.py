@@ -53,6 +53,8 @@ Fri Jul 28 20:37:55 CDT 2023
 Published.
 """
 import inspect
+
+
 def kwasak(func):
     """
     Intention:
@@ -77,4 +79,3 @@ def kwasak(func):
         return getattr(self, correct_method)(*correct_args)
 
     return wrapper
-

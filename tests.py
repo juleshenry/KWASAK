@@ -1,5 +1,6 @@
 from kwasak import kwasak
 
+
 def einstein():
     class Einstein:
         @kwasak
@@ -12,12 +13,11 @@ def einstein():
         def einstein__e(s, m: float) -> float:
             return m * 8.98755179e16
 
-
     e = Einstein()
     ans = e.einstein(e=1000)  # returns m, (1000 / 8.98755179 e16), ~1.11265 e -14
     assert 1.1126500557278013e-14 == (ans)
     ans = e.einstein(m=1000)  # returns e, 1000 * 8.98755179 e16, ~8.98755179 e19
-    assert 8.98755179e+19 == (ans)
+    assert 8.98755179e19 == (ans)
     ans = e.einstein(e=ans)  # returns e, 1000 * 8.98755179 e16, ~8.98755179 e19
     assert 1000.0 == (ans)
 
@@ -29,14 +29,13 @@ def pythagoras():
             return
 
         def pythagorean__a(s, b: float, c: float):
-            return (c ** 2 - b ** 2) ** 0.5
+            return (c**2 - b**2) ** 0.5
 
         def pythagorean__b(s, a: float, c: float):
-            return (c ** 2 - a ** 2) ** 0.5
+            return (c**2 - a**2) ** 0.5
 
         def pythagorean__c(s, a: float, b: float):
-            return (a ** 2 + b ** 2) ** 0.5
-
+            return (a**2 + b**2) ** 0.5
 
     p = Pythagoras()
 
@@ -53,26 +52,26 @@ def vacuum_theory():
 
         @kwasak
         def eqn_1_3(s, k=None, m=None, T=None, **kwargs):
-            return 
+            return
 
         def eqn_1_3__T(s, k: float, m: float):
             # .5 * m * v**2 = 1.5 * k * T
             result = []
-            T = 0.333333333333333 * m  ** 2 / k
+            T = 0.333333333333333 * m**2 / k
             result.append(T)
             return T
 
         def eqn_1_3__k(s, T: float, m: float):
             # .5 * m * v**2 = 1.5 * k * T
             result = []
-            k = 0.333333333333333 * m  ** 2 / T
+            k = 0.333333333333333 * m**2 / T
             result.append(k)
             return k
 
         def eqn_1_3__m(s, T: float, k: float):
             # .5 * m * v**2 = 1.5 * k * T
             result = []
-            m = 3.0 * T * k ** 2
+            m = 3.0 * T * k**2
             result.append(m)
             return m
 
@@ -85,12 +84,12 @@ def vacuum_theory():
     ans = VT.eqn_1_3(m=2, k=1)  # 13
     assert 1.333333333333332 == (ans), ans
 
-if __name__=='__main__':
-    einstein()
-    print('Einstein, ✅')
-    pythagoras()
-    print('Pythagoras, ✅')
-    vacuum_theory()
-    print('Vacuum Theory, ✅')
-    print('Done! ✅')
 
+if __name__ == "__main__":
+    einstein()
+    print("Einstein, ✅")
+    pythagoras()
+    print("Pythagoras, ✅")
+    vacuum_theory()
+    print("Vacuum Theory, ✅")
+    print("Done! ✅")
