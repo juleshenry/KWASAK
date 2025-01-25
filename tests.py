@@ -1,4 +1,4 @@
-from kwasak import kwasak
+from kwasak import kwasak, kwasak_static
 
 
 def einstein():
@@ -88,7 +88,7 @@ def einstein_static():
     class Einstein:
 
         # @staticmethod/?
-        @kwasak
+        @kwasak_static
         def einstein(e: float = None, m: float = None, **kwargs):
             return  # decorator skips return
 
